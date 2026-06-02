@@ -2,3 +2,4 @@ streamlit
 pandas
 pillow
 streamlit-image-coordinates
+streamlit-drawable-canvas-fix
