@@ -402,9 +402,9 @@ with left_col:
         if existing_category in CATEGORIES:
             default_category_index = CATEGORIES.index(existing_category)
         else:
-            default_category_index = 0
+            default_category_index = None
     else:
-        default_category_index = 0
+        default_category_index = None
 
     category = st.radio(
         "Select category",
@@ -431,12 +431,23 @@ with left_col:
         category=category,
     )
 
+    if st.button(
+        "Delete last point",
+        key=f"delete_last_point_{current_image_name}",
+    ):
+        if st.session_state.current_points:
+            st.session_state.current_points.pop()
+            st.rerun()
+
 
 with right_col:
     st.subheader("Current annotation")
 
     st.write("Category:")
-    st.write(f"**{category}**")
+    if category is None:
+        st.write("**Not selected**")
+    else:
+        st.write(f"**{category}**")
 
     st.write("Points:")
 
@@ -444,10 +455,12 @@ with right_col:
     # Save button logic
     # ------------------------------------------------------------
 
-    category_clean = str(category).strip()
+    category_clean = str(category).strip() if category is not None else None
 
     if category_clean == "rejected":
         can_save = True
+    elif category_clean is None:
+        can_save = False
     else:
         can_save = len(st.session_state.current_points) == 3
 
@@ -478,12 +491,16 @@ with right_col:
     if st.button(
         save_button_label,
         type="primary",
-        use_container_width=True,
+        width='stretch',
         disabled=button_disabled,
         key=f"save_and_next_{current_image_name}",
     ):
         # Re-read category cleanly at click time
-        category_clean = str(category).strip()
+        category_clean = str(category).strip() if category is not None else None
+
+        if category_clean is None:
+            st.error("Cannot save: please select a category first.")
+            st.stop()
 
         # Validate and prepare points
         if category_clean == "rejected":
@@ -533,7 +550,7 @@ with right_col:
         st.write("Saved annotations preview:")
         st.dataframe(
             df_existing.tail(10),
-            use_container_width=True,
+            width='stretch',
             height=240,
         )
     else:
