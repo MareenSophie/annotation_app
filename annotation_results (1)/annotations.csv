@@ -1,6 +1,0 @@
-image_name,category,p1_name,p1_x,p1_y,p2_name,p2_x,p2_y,p3_name,p3_x,p3_y,timestamp
-0002_0000.png,acceptable,left_PS_endpoint,172.0,110.0,right_PS_endpoint,304.0,55.0,fetal_head_tangent_reference_point,376.0,257.0,2026-05-29T14:06:16
-0008_0000.png,rejected,left_PS_endpoint,,,right_PS_endpoint,,,fetal_head_tangent_reference_point,,,2026-05-29T14:06:23
-0014_0000.png,standard_plane,left_PS_endpoint,145.0,104.0,right_PS_endpoint,264.0,52.0,fetal_head_tangent_reference_point,405.0,163.0,2026-05-29T14:06:30
-0016_0000.png,acceptable,left_PS_endpoint,156.0,111.0,right_PS_endpoint,256.0,61.0,fetal_head_tangent_reference_point,329.0,207.0,2026-05-29T14:06:38
-0021_0000.png,standard_plane,left_PS_endpoint,154.0,116.0,right_PS_endpoint,269.0,48.0,fetal_head_tangent_reference_point,343.0,229.0,2026-05-29T14:06:55
